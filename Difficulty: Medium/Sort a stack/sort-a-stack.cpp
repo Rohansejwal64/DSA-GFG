@@ -1,24 +1,28 @@
-/*The structure of the class is
-class SortedStack{
-public:
-    stack<int> s;
-    void sort();
+class Solution {
+  public:
+  void corrpos(stack<int> &st, int x){
+      if(st.empty()){
+          st.push(x);
+          return;
+      }
+      
+      int temp=st.top();
+      if(x>= temp){
+          st.push(x);
+          return;
+      }
+      else{
+          st.pop();
+          corrpos(st,x);
+          st.push(temp);
+      }
+  }
+    void sortStack(stack<int> &st) {
+        // code here
+        if(st.empty()) return;
+        int temp=st.top();
+        st.pop();
+        sortStack(st);
+        corrpos(st,temp);
+    }
 };
-*/
-
-/* The below method sorts the stack s
-you are required to complete the below method */
-void SortedStack ::sort() {
-    // Your code here
-    vector<int> temp;
-    while(!s.empty()){
-        temp.push_back(s.top());
-        s.pop();
-        
-    }
-     std::sort(temp.begin(), temp.end());
-    for(int i=0;i<temp.size();i++){
-        s.push(temp[i]);
-    }
-    
-}
